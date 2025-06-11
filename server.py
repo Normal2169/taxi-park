@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, redirect, url_for
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 from config import Config
@@ -11,25 +11,28 @@ migrate = Migrate(app, db)
 @app.route("/")
 def index():
     return render_template("index.html", current_page="main")
+
+
+
+@app.route('/Drivers')
+def Drivers():
+    Drivers = models.Drivers.query.all()
+    return render_template('drivers.html', Drivers=Drivers)
+@app.route('/Drivers/add', methods=['POST'])
+def add_Drivers():
+    if request.method == 'POST':
+        Drivers = models.Drivers(
+            Full_name=request.form['Full_name'],
+            Car=request.form['Car'],
+            raiting=request.form['raiting'],
+            Color=request.form['Color']
+        )
+        db.session.add(Drivers)
+        db.session.commit()
+    return redirect(url_for('Drivers'))
+
+
 def main():
     app.run("0.0.0.0", port=8060, debug=True)
 if __name__ == "__main__":
     main()
-
-
-@app.route('/Cars')
-def Cars():
-    Cars = models.Cars.query.all()
-    return render_template('сars.html', Cars=Cars)
-@app.route('/Cars/add', methods=['POST'])
-def add_Cars():
-    if request.method == 'POST':
-        Cars = models.Cars(
-            Name=request.form['Name'],
-            Manufacturer=request.form['Manufacturer'],
-            Number=request.form['Number'],
-            Color=request.form['Color']
-        )
-        db.session.add(Cars)
-        db.session.commit()
-        return redirect(url_for('Cars'))
