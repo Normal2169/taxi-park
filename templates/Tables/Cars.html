@@ -10,6 +10,8 @@
 </head>
 
 <body>
+
+{% extends "Cars.html" %}  
   <nav class="navbar bg-body-tertiary">
     <div class="nav nav-pills">
       <a class="navbar-brand" href="/templates/index.html">
@@ -34,6 +36,7 @@
       <div class="text-end">
         <a class="btn btn-success" href="/">Добавить запись о машине</a>
       </div>
+      {% block content %}
       <table class="table table-striped">
         <thead>
           <tr>
@@ -43,10 +46,20 @@
             <th scope="col">Цвет</th>
           </tr>
         </thead>
+
         <tbody id="Cars">
-          <!--Здесь будут продукты-->
+          {% for car in cars %}
+          <tr>
+            <td>{{ Cars.id }}</td>
+            <td>{{ Cars.Manufacturer }}</td>
+            <td>{{ Cars.Number }}</td>
+            <td>{{ Cars.Color }}</td>
+          </tr>
+          {% endfor %}
         </tbody>
+       
       </table>
+       {% endblock %}
     </div>
   </div>
   <script src="/"></script>
