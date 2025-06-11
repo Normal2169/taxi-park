@@ -1,35 +1,24 @@
-<!DOCTYPE html>
-<html lang="ru">
+{% extends "base.html" %}
+{% block content %}
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" type="image/x-icon" href="/static/assets/logo.png">
-    <link rel="stylesheet" href="/static/assets/bootstrap.rtl.min.css">
-    <script src="/static/assets/bootstrap.min.js"></script>
-    <title>Таксопарк</title>
-</head>
-
-<body>
-    <nav class="navbar bg-body-tertiary">
-        <div class="nav nav-pills">
-            <a class="navbar-brand" href="/templates/index.html">
-                <img src="/static/assets/logo.png" alt="logo" width="30" height="30" class="d-inline-block">
-                Таксопарк "Черные паруса"
-            </a>
-            <ul class="nav pe-2">
-                <li class="nav-item">
-                    <a class="nav-link activate text-black" href="#">Водители</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/templates/cars.html">Автомобили</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/templates/Orders.html">Заказы</a>
-                </li>
-            </ul>
-        </div>
-    </nav>
-</body>
-
-</html>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">id</th>
+      <th scope="col">ФИО</th>
+      <th scope="col">Машина</th>
+      <th scope="col">Рейтинг</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for driver in drivers %}
+    <tr>
+      <td>{{ driver.id }}</td>
+      <td>{{ driver.full_name }}</td>
+      <td>{{ driver.rating }}</td>
+      <td>{% if driver.is_available %}Доступна{% else %}На руках{% endif %}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}

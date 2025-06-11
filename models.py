@@ -18,5 +18,5 @@ class Cars(db.Model):
     color = db.Column(db.String(100), nullable=False)
     is_available = db.Column(db.Boolean, default=True)
     def __repr__(self):
-        return f'<Drivers {self.title}>'
+        return f'<Cars {self.title}>'
     
