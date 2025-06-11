@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="/static/assets/logo.png">
+    <link rel="stylesheet" href="/static/assets/bootstrap.rtl.min.css">
+    <script src="/static/assets/bootstrap.min.js"></script>
+    <title>Таксопарк</title>
+</head>
+
+<body>
+    <header class="position-fixed w-100">
+        <nav class="navbar bg-body-tertiary">
+            <div class="nav nav-pills">
+                <a class="navbar-brand" href="#">
+                    <img src="/static/assets/logo.png" alt="logo" width="30" height="30" class="d-inline-block"
+                        link="/index.html">
+                    Таксопарк "Черные паруса"
+                </a>
+                <ul class="nav pe-2">
+                    <li class="nav-item">
+                        <a class="nav-link {% if current_page == 'drivers' %} active {% endif %}" href="/drivers">Водители</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {% if current_page == 'cars' %} active {% endif %}" href="/cars">Автомобили</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        
+    </header>
+    {% block content %}{% endblock %}
+</body>
+
+</html>

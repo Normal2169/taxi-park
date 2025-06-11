@@ -1,53 +1,16 @@
-<!DOCTYPE html>
-<html lang="ru">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" type="image/x-icon" href="/static/assets/logo.png">
-    <link rel="stylesheet" href="/static/assets/bootstrap.rtl.min.css">
-    <script src="/static/assets/bootstrap.min.js"></script>
-    <title>Таксопарк</title>
-</head>
-
-<body>
-    <nav class="navbar bg-body-tertiary">
-        <div class="nav nav-pills">
-            <a class="navbar-brand" href="#">
-                <img src="/static/assets/logo.png" alt="logo" width="30" height="30" class="d-inline-block"
-                    link="/index.htmld">
-                Таксопарк "Черные паруса"
-            </a>
-            <ul class="nav pe-2">
-                <li class="nav-item">
-                    <a class="nav-link" href="/templates/drivers.html">Водители</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/templates/cars.html">Автомобили</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/templates/Orders.html">Заказы</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/templates/Tables/drivers.html">Админ панель</a>
-                </li>
-            </ul>
-        </div>
-    </nav>
-    <div style="background-image: url('/templates/1.gif'); background-size: cover; background-position: center;  height: 100vh;">
-        <div class="container pt-5">
-            <div class="d-flex justify-content-center m-1">
-                <div class="d-flex flex-column" style="max-width: 300px;">
-                    <img class="image-fluid" src="/static/assets/Logo1.png">
-                    <h1 class="text-center text-light m-1">Таксопарк</h1>
-                    <p class="text-center text-light">Доставим с ветерком</p>
-                    <a class="btn btn-light mt-1" href="/templates/cars.html">Перечень водителей</a>
-                    <a class="btn btn-light mt-1" href="/templates/drivers.html">Каталог автомобилей</a>
-                    <a class="btn btn-light mt-1" href="/templates/Orders.html">Каталог заказов</a>
-                </div>
+{% extends "base.html" %}
+{% block content %}
+<div style="background-image: url('/templates/1.gif'); background-size: cover; background-position: center;  height: 100vh;">
+    <div class="container pt-5">
+        <div class="d-flex justify-content-center m-1">
+            <div class="d-flex flex-column" style="max-width: 300px;">
+                <img class="image-fluid" src="/static/assets/Logo1.png">
+                <h1 class="text-center text-light m-1">Таксопарк</h1>
+                <p class="text-center text-light">Доставим с ветерком</p>
+                <a class="btn btn-light mt-1" href="/cars">Перечень водителей</a>
+                <a class="btn btn-light mt-1" href="/drivers">Каталог автомобилей</a>
             </div>
         </div>
     </div>
-</body>
-
-</html>
+</div>
+{% endblock %}
