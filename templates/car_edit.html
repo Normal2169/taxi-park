@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block content %}
+<form method="POST" action="{{ url_for('update_car', id=car.id) }}" novalidate>
+  <div class="form-check">
+    <label for="name">Название машины</label>
+    <input type="text" class="form-control" id="name" name="name" aria-required="true" value="{{ car.name }}" />
+  </div>
+  <div class="form-check">
+    <label for="manufacturer">Производитель</label>
+    <input type="text" class="form-control" id="manufacturer" name="manufacturer" aria-required="true" value="{{ car.manufacturer }}" />
+  </div>
+  <div class="form-check">
+    <label for="number">Номер автомобиля</label>
+    <input type="text" class="form-control" id="number" name="number" aria-required="true" value="{{ car.number }}" />
+  </div>
+  <div class="form-check">
+    <label for="color">Цвет машины</label>
+    <input type="text" class="form-control" id="color" name="color" aria-required="true" value="{{ car.color }}"/>
+  </div>
+  <div class="form-check">
+    <label for="is_available">Занятость</label> 
+    <input type="text" class="form-control" id="is_available" name="is_available" value="{{ car.is_available }}" />
+    <small class="form-text text-muted">Здесь вводите False или True</small>
+  </div>
+  <button type="submit" class="btn btn-primary ms-4 m-2">Подтвердить</button>
+</form>
+
+
+
+
+{% endblock %}

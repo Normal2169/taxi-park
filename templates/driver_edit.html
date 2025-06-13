@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block content %}
+<form method="POST" action="{{ url_for('update_driver', id=driver.id) }}" novalidate>
+  <div class="form-check">
+    <label for="full_name">ФИО</label>
+    <input type="text" class="form-control" id="full_name" name="full_name" value="{{ driver.full_name }}" aria-required="true" />
+  </div>
+  <div class="form-check">
+    <label for="rating">Рейтинг</label>
+    <input type="number" class="form-control" id="rating" name="rating" required min="0" required max="5" value="{{ driver.rating }}" aria-required="true" />
+  </div>
+  <div class="form-check">
+    <label for="is_available">Занятость</label>
+    <input type="text" class="form-control" id="is_available" value="{{ driver.is_available }}" name="is_available" value="{{ driver.is_available }}" />
+    <small class="form-text text-muted">Здесь вводите False или True</small>
+  </div>
+  <button type="submit" class="btn btn-primary ms-4 m-2">Подтвердить</button>
+</form>
+
+{% endblock %}
