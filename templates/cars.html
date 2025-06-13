@@ -19,7 +19,7 @@
       <td>{{ car.manufacturer }}</td>
       <td>{{ car.number }}</td>
       <td>{{ car.color }}</td>
-      <td>{% if car.is_available %}Допустен{% else %}Не доступен{% endif %}</td>
+      <td>{% if car.is_available %}Допустна{% else %}Не доступна{% endif %}</td>
       <td>
         <div class="d-flex gap-2">
           <form method="POST" action="{{ url_for('delete_car', id=car.id) }}" novalidate>
