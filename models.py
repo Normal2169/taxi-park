@@ -7,9 +7,9 @@ class Drivers(db.Model):
     rating = db.Column(db.Integer)
     is_available = db.Column(db.Boolean, default=True)
     def __repr__(self):
-        return f'<Drivers {self.title}>'
+        return f'<drivers {self.title}>'
 
-class Cars(db.Model):
+class cars(db.Model):
     __tablename__ = 'cars'
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(100), nullable=False)
@@ -18,5 +18,5 @@ class Cars(db.Model):
     color = db.Column(db.String(100), nullable=False)
     is_available = db.Column(db.Boolean, default=True)
     def __repr__(self):
-        return f'<Cars {self.title}>'
+        return f'<cars {self.title}>'
     
