@@ -1,60 +1,62 @@
-<!DOCTYPE html>
-<html lang="ru">
+{% extends "base.html" %}
+{% block content %}
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Таксопарк(Админ панель)</title>
-  <link href="/static/assets/bootstrap.rtl.min.css" rel="stylesheet">
-  <script src="/static/assets/bootstrap.min.js"></script>
-</head>
-
-<body>
-
-{% extends "Cars.html" %}  
-  <nav class="navbar bg-body-tertiary">
-    <div class="nav nav-pills">
-      <a class="navbar-brand" href="index.html">
-        <img src="/static/assets/logo.png" alt="logo" width="30" height="30" class="d-inline-block">
-        Таксопарк "Черные паруса"
-      </a>
-      <ul class="nav pe-2">
-        <li class="nav-item">
-          <a class="nav-link" href="/drivers">Водители</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link activate text-black" href="#">Автомобили</a>
-        </li>
-      </ul>
-    </div>
-  </nav>
-  <div class="container-xxl p-0 mt-3" style="min-height: 100%">
-    <div>
-      <div class="text-end">
-        <a class="btn btn-success" href="/">Добавить запись о машине</a>
-      </div>
-      <table class="table table-striped">
-        <thead>
-          <tr>
-            <th scope="col">id</th>
-            <th scope="col">Производитель</th>
-            <th scope="col">Номер</th>
-            <th scope="col">Цвет</th>
-          </tr>
-        </thead>
-
-        <tbody id="Cars">
-          <tr>
-            <td>{{ Cars.id }}</td>
-            <td>{{ Cars.Manufacturer }}</td>
-            <td>{{ Cars.Number }}</td>
-            <td>{{ Cars.Color }}</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
+<table class="table ms-2 me-2 mt-1">
+  <thead>
+    <tr>
+      <th scope="col">id</th>
+      <th scope="col">Название машины</th>
+      <th scope="col">Производитель</th>
+      <th scope="col">Номер машины</th>
+      <th scope="col">Цвет машины</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for car in cars %}
+    <tr>
+      <td>{{ car.id }}</td>
+      <td>{{ car.name }}</td>
+      <td>{{ car.manufacturer }}</td>
+      <td>{{ car.number }}</td>
+      <td>{{ car.color }}</td>
+      <td>{% if car.is_available %}Допустен{% else %}Не доступен{% endif %}</td>
+      <td>
+        <div class="d-flex gap-2">
+          <form method="POST" action="{{ url_for('delete_car', id=car.id) }}" novalidate>
+            <button type="submit" name="_method" value="DELETE" class="btn btn-danger">🗑</button>
+          </form>
+          <form method="POST" action="{{ url_for('edit_car_page', id=car.id) }}" novalidate>
+            <button type="submit" class="btn btn-warning">✏️</button>
+          </form>
+        </div>
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+<div class="text-center m-2">Добавление записи о машине</div>
+<form method="POST" action="{{ url_for('add_car') }}" novalidate>
+  <div class="form-check">
+    <label for="name">Название машины</label>
+    <input type="text" class="form-control" id="name" name="name" aria-required="true" />
   </div>
-  <script src="/"></script>
-</body>
-
-</html>
+  <div class="form-check">
+    <label for="manufacturer">Производитель</label>
+    <input type="text" class="form-control" id="manufacturer" name="manufacturer" aria-required="true" />
+  </div>
+  <div class="form-check">
+    <label for="number">Номер автомобиля</label>
+    <input type="text" class="form-control" id="number" name="number" aria-required="true" />
+  </div>
+  <div class="form-check">
+    <label for="color">Цвет машины</label>
+    <input type="text" class="form-control" id="color" name="color" aria-required="true" />
+  </div>
+  <div class="form-check">
+    <label for="is_available">Занятость</label>
+    <input type="text" class="form-control" id="is_available" name="is_available" value="False" />
+    <small class="form-text text-muted">Здесь вводите False или True</small>
+  </div>
+  <button type="submit" class="btn btn-primary ms-4 m-2">Подтвердить</button>
+</form>
+{% endblock %}
